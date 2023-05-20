@@ -1,0 +1,35 @@
+<%- include("partials/header"); -%>
+    <h1>Home</h1>
+    <p>
+        <%= homeStartingContent%>
+    </p>
+
+    <%postContent.forEach((posts)=> {%>
+        <%if(posts !=null){%>
+            <h2>
+                <%= posts.name%>
+            </h2>
+            <p>
+
+                <%= posts.data.substring(0,100) + "..." %>
+
+                    <a class="link" href="/posts/<%=posts.name%>">Read me.</a>
+
+                    <form class="line" action="/update" method="post">
+                        <button type="submit" class="btn btn-primary btn-sm " name="postUpdate"
+                            value="<%= posts._id%>">UPDATE</button>
+                    </form>
+
+                    <form class="line" action="/delete" method="post">
+                        <button type="submit" class="btn btn-danger btn-sm" name="postDelete" 
+                        value="<%=posts._id%>">DELETE</button>
+                    </form>
+            </p>
+            <%}%>
+        <%});%>
+
+            <div class="d-grid mt-5 mb-3">
+                <a href="/compose" class="btn btn-success btn-lg rounded-pill"
+                    style="text-decoration-line: none;">Compose</a>
+            </div>
+            <%- include("partials/footer"); -%>
